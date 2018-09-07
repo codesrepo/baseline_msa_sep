@@ -1,0 +1,2 @@
+convai2_self_seq2seq_model.shutdown_state filter=lfs diff=lfs merge=lfs -text
+convai2_self_seq2seq_model filter=lfs diff=lfs merge=lfs -text
