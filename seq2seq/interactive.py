@@ -14,18 +14,14 @@ from parlai.scripts.interactive import interactive
 if __name__ == '__main__':
     parser = ParlaiParser(add_model_args=True)
     parser.set_params(
-        model='legacy:seq2seq:0',
-        model_file='models:convai2/seq2seq/convai2_self_seq2seq_model',
-        dict_file='models:convai2/seq2seq/convai2_self_seq2seq_model.dict',
+        model='parlai.agents.msa_agent.seq2seq.seq2seq_v0:PerplexityEvaluatorAgent',
+        #model_file='models:convai2/seq2seq/convai2_self_seq2seq_model',
+        #dict_file='models:convai2/seq2seq/convai2_self_seq2seq_model.dict',
+        model_file='../model/convai2_self_seq2seq_model',
+        dict_file='../model/dict_convai2_self',
         dict_lower=True,
         batchsize=1,
     )
     opt = parser.parse_args()
-    if (opt.get('model_file', '')
-            .find('convai2/seq2seq/convai2_self_seq2seq_model') != -1):
-        opt['model_type'] = 'seq2seq'
-        fnames = ['convai2_self_seq2seq_model.tgz',
-                  'convai2_self_seq2seq_model.dict',
-                  'convai2_self_seq2seq_model.opt']
-        download_models(opt, fnames, 'convai2', version='v3.0')
     interactive(opt)
+
