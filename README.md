@@ -31,6 +31,19 @@ For ppl:python eval_ppl.py -dt valid
 For f1:python eval_f1.py -dt valid
 For hits@1:python eval_hits.py -dt valid
 
+#####Running interactive.py
+
+1. Implement steps 1 to 4 as mentioned above
+2. Got to "ParlAI/projects/convai2/baseline_msa_sep/seq2seq/" folder
+3. python 
+
+#####Running the wild evaluation script
+
+1. Implement steps 1 to 4 as mentioned above
+2. Got to "ParlAI/projects/convai2/baseline_msa_sep/seq2seq/" folder
+3. python convai_bot.py --bot-id '89ba1274-c5aa-4821-8932-c3c760fe546e' -rbu 'https://2258.lnsigo.mipt.ru/bot'
+
+
 Otherlinks:
 https://www.linkedin.com/in/mohd-shadab-alam/
 https://www.kaggle.com/outliar
