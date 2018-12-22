@@ -347,7 +347,7 @@ class Encoder(nn.Module):
         h0 = self.highway(hidden[0])
         c0 = self.highway(hidden[1])
         hidden = (hidden[0]+h0,hidden[1]+c0)
-        encoder_output, hidden = self.rnn(xes)
+        #encoder_output, hidden = self.rnn(xes)
         if packed:
             encoder_output, _ = pad_packed_sequence(encoder_output,
                                                     batch_first=True)
