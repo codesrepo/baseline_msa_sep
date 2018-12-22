@@ -43,6 +43,31 @@ For hits@1:python eval_hits.py -dt valid
 2. Got to "ParlAI/projects/convai2/baseline_msa_sep/seq2seq/" folder
 3. python convai_bot.py --bot-id '89ba1274-c5aa-4821-8932-c3c760fe546e' -rbu 'https://2258.lnsigo.mipt.ru/bot'
 
+#####Training steps:
+
+1. Training the language embeddings
+	You need to run the script "lang_model.py" for generating and saving the language embeddings.
+	Please make sure you have completed below steps before running this script
+	a. Change the file paths as per your local path
+	b. Download the pre trained weights "fwd_wt103.h5" and "itos_wt103.pkl" from this location "http://files.fast.ai/models/wt103/" please refer (https://github.com/fastai/fastai/blob/master/courses/dl2/imdb.ipynb) for more details
+	c. Go through all the comments starting from "----" and make appropriate changes
+	d. Run this code
+	e. Note down the location of the saved embeddings: "/home/shadab/ParlAI/lang_model/emb_array.npy" and saved indexes as these are required in training step 1
+
+2. Training seq2seq model step 1
+        a.Change the embedding paths in the "/home/shadab/ParlAI/projects/convai2/baseline_msa_sep/msa_agent/seq2seq/seq2seq_v0.py" script                 
+                PRE_LM_PATH = "/home/shadab/ParlAI/lang_model/emb_array.npy"
+                PRE_PATH = "/home/shadab/ParlAI/lang_model/tmp/itos.pkl"
+        b.Ensure that (in seq2seq_v0.py):
+            self.model.decoder.lt.weight.requires_grad = True
+            self.model.encoder.lt.weight.requires_grad = True
+	python train.py --dict-include-valid False -bs 100 -bsrt True -vp 25 -esz 700
+3. Training seq2seq model step 2
+        a.Ensure that (in seq2seq_v0.py):
+            self.model.decoder.lt.weight.requires_grad = False
+            self.model.encoder.lt.weight.requires_grad = False
+	b. Data preparation: Run the data preparation code and rename the new training file
+	python train.py --dict-include-valid False -bs 105 -bsrt True -vp 25 -esz 700
 
 Otherlinks:
 https://www.linkedin.com/in/mohd-shadab-alam/
